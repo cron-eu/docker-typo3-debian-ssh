@@ -1,4 +1,4 @@
-# [TYPO3 Docker Debian SSH Image](https://hub.docker.com/r/remuslazar/typo3-debian)
+# [TYPO3 Docker Debian SSH Image](https://hub.docker.com/r/remuslazar/typo3-debian-ssh)
 [![](https://images.microbadger.com/badges/image/remuslazar/typo3-debian-ssh.svg)](https://microbadger.com/images/remuslazar/typo3-debian-ssh "TYPO3 Debian SSH Docker Image") [![](https://images.microbadger.com/badges/version/remuslazar/typo3-debian-ssh.svg)](https://microbadger.com/images/remuslazar/typo3-debian-ssh "TYPO3 Debian SSH Docker Image")
 
 Abstract
