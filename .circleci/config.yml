@@ -10,15 +10,15 @@ jobs:
       - run:
           name: Build the docker image
           command: docker build --tag=typo3-debian-ssh .
-      # - run:
-      #     name: Run the docker web container
-      #     background: true
-      #     command: |
-      #       docker run --name=ssh typo3-debian-ssh
-      # - run:
-      #     name: Check if the ssh is working
-      #     command: |
-      #       docker run --rm alpine --link ssh /bin/sh -c ''
+      - run:
+          name: Run the docker web container
+          background: true
+          command: |
+            docker run --env="SSH_USER=" --name=ssh typo3-debian-ssh
+      - run:
+          name: Check if the ssh is working
+          command: |
+            sleep 2; docker run --rm --link ssh alpine /bin/sh -c 'nc -zv ssh 22' | grep open
 
 workflows:
   version: 2

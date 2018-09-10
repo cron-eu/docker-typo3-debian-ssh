@@ -5,7 +5,9 @@ set -ex
 # Configure authorized_keys for the www-data user
 #
 
-cd /var/www || exit 1
+[ "${SSH_USER}" ] || exit 0
+
+cd "$(getent passwd ${SSH_USER} | awk -F: '{print $6}')" || exit 1
 
 mkdir -p .ssh
 chmod 700 .ssh
@@ -15,4 +17,4 @@ if [ -f /run/secrets/authorized_keys ] ; then
   chmod 600 .ssh/authorized_keys
 fi
 
-chown www-data .ssh -R
+chown ${SSH_USER} .ssh -R
