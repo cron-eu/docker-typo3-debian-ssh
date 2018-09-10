@@ -9,21 +9,16 @@ jobs:
 
       - run:
           name: Build the docker image
-          command: docker build --tag=typo3-debian .
-      - run:
-          name: Run the docker web container
-          background: true
-          command: |
-            docker run --name=web typo3-debian
-      - run: while true; do if docker logs web 2>&1 | grep "ready to handle connections"; then break; else echo "Waiting for web container to finish provisioning..." && sleep 10; fi done
-      - run:
-          name: Do basic front-end tests
-          command: |
-            docker run --rm --volumes-from=web --link=web alpine /bin/sh -c 'apk add curl wget -q \
-             && wget -q --retry-connrefused --waitretry=4 --read-timeout=60 \
-               --timeout=60 -t 300 http://web -O- >/dev/null \
-             && curl -s -L --head http://web | grep "HTTP/1.1 200 OK" \
-             && curl -s -L http://web | grep "Installing TYPO3 CMS"'
+          command: docker build --tag=typo3-debian-ssh .
+      # - run:
+      #     name: Run the docker web container
+      #     background: true
+      #     command: |
+      #       docker run --name=ssh typo3-debian-ssh
+      # - run:
+      #     name: Check if the ssh is working
+      #     command: |
+      #       docker run --rm alpine --link ssh /bin/sh -c ''
 
 workflows:
   version: 2
