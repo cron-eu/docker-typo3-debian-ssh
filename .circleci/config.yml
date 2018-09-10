@@ -18,7 +18,7 @@ jobs:
       - run:
           name: Check if the ssh is working
           command: |
-            sleep 2; docker run --rm --link ssh alpine /bin/sh -c 'nc -zv ssh 22' | grep open
+            sleep 2; docker run --rm --link ssh alpine /bin/sh -c 'nc -zv ssh 22'
 
 workflows:
   version: 2
