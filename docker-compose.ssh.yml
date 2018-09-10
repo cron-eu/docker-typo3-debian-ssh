@@ -1,0 +1,17 @@
+---
+version: '3.1'
+secrets:
+  authorized_keys:
+    file: ~/.ssh/id_rsa.pub
+services:
+  ssh:
+    secrets:
+      - authorized_keys
+    image: remuslazar/typo3-debian-ssh:latest
+    ports:
+      - '2200:22'
+    links:
+      - db
+      - web
+    volumes:
+      - data:/var/www
